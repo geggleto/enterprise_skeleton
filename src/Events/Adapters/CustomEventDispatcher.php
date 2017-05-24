@@ -92,4 +92,12 @@ class CustomEventDispatcher implements EventDispatcher
     public function removeListeners($eventName) {
         unset($this->mapping[$eventName]);
     }
+
+    /**
+     * @param $eventName
+     * @return array
+     */
+    public function getListeners($eventName) {
+        return (isset($this->mapping[$eventName]))? $this->mapping[$eventName] : [];
+    }
 }

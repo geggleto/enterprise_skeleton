@@ -26,4 +26,10 @@ interface EventDispatcher
      * @return void
      */
     public function removeListeners($eventName);
+
+    /**
+     * @param $eventName
+     * @return array
+     */
+    public function getListeners($eventName);
 }

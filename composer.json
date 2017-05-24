@@ -31,9 +31,13 @@
         }
     ],
     "autoload" : {
-        "Infrastructure\\" : "src"
+        "psr-4" : {
+            "Infrastructure\\": "src"
+        }
     },
     "autoload-dev" : {
-        "Tests\\Infrastructure\\" : "tests"
+        "psr-4" : {
+            "Tests\\Infrastructure\\": "tests"
+        }
     }
 }

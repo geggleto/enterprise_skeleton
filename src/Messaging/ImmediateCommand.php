@@ -13,6 +13,7 @@ namespace Infrastructure\Messaging;
  */
 class ImmediateCommand implements Command
 {
+    const EXCEPTION_MESSAGE = "If you're using deserialize here, then you're doing something wrong!";
     /**
      * @var Command
      */
@@ -59,7 +60,7 @@ class ImmediateCommand implements Command
      */
     public static function deserialize(array $data)
     {
-        throw new \Exception("If you're using deserialize here, then you're doing something wrong! ");
+        throw new \RuntimeException(self::EXCEPTION_MESSAGE);
     }
 
 

@@ -45,7 +45,7 @@ class CommandQueueMiddleware implements Middleware
                 json_encode($command->jsonSerialize()),
                 [],
                 $this->exchange,
-                $command->getRoutingKey()
+                $command->getCommandName()
             );
 
             return true;

@@ -39,9 +39,9 @@ class ImmediateCommand implements Command
     /**
      * @inheritDoc
      */
-    public function getRoutingKey()
+    public function getCommandName()
     {
-        return $this->getCommand()->getRoutingKey();
+        return $this->getCommand()->getCommandName();
     }
 
     /**

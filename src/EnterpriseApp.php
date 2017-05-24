@@ -14,6 +14,7 @@ class EnterpriseApp extends App
     public function __construct($diConfigFile = '')
     {
         parent::__construct();
+
         if (file_exists($diConfigFile)) {
             $this->pathToDIConfig = $diConfigFile;
         }
@@ -21,6 +22,6 @@ class EnterpriseApp extends App
 
     protected function configureContainer(ContainerBuilder $builder)
     {
-        $builder->addDefinitions(include $this->pathToDIConfig);
+        $builder->addDefinitions($this->pathToDIConfig);
     }
 }

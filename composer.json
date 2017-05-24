@@ -1,0 +1,39 @@
+{
+    "name": "glenneggleton/skeleton",
+    "description": "Enterprise Skeleton",
+    "type": "library",
+    "require": {
+        "php-amqplib/php-amqplib": "^2.6",
+        "league/tactician": "^1.0",
+        "league/tactician-container": "^2.0",
+        "doctrine/orm": "^2.5",
+        "php-di/slim-bridge": "^1.0",
+        "monolog/monolog": "^1.22",
+        "ramsey/uuid": "^3.6",
+        "doctrine/migrations": "^1.5",
+        "slim/twig-view": "^2.2",
+        "aura/intl": "^3.0",
+        "vlucas/valitron": "^1.4",
+        "vlucas/phpdotenv": "^2.4",
+        "predis/predis": "^1.1",
+        "dflydev/fig-cookies": "^1.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit" : "^5.6",
+        "mockery/mockery": "^0.9.8",
+        "fzaninotto/faker": "^1.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Glenn Eggeton",
+            "email": "geggleto@gmail.com"
+        }
+    ],
+    "autoload" : {
+        "Infrastructure\\" : "src"
+    },
+    "autoload-dev" : {
+        "Tests\\Infrastructure\\" : "tests"
+    }
+}

@@ -1,0 +1,93 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: bradleyhanebury
+ * Date: 15-09-29
+ * Time: 2:43 PM
+ */
+
+namespace Infrastructure\ValueObject\Identity;
+use Infrastructure\ValueObject\ValueObject;
+use Ramsey\Uuid\Uuid as BaseUuid;
+use Infrastructure\ValueObject\Exception\InvalidArgumentException;
+
+/**
+ * Class Uuid
+ *
+ * @package Mobials\Model\ValueObject\Identity
+ */
+class Uuid implements ValueObject
+{
+
+    /**
+     * @var string
+     */
+    private $value;
+
+    /**
+     * @param null|string $value
+     */
+    public function __construct($value = null)
+    {
+        if ($value !== null)
+        {
+            $pattern = '/'.BaseUuid::VALID_PATTERN.'/';
+
+            if (! \preg_match($pattern, $value))
+            {
+                throw new InvalidArgumentException("{$value} is not a valid UUID");
+            }
+
+            $uuid_str = $value;
+        }
+        else
+        {
+            $uuid_str = BaseUuid::uuid4();
+        }
+
+        $this->value = \strval($uuid_str);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function __toString()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUuid()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @inheritdoc
+     * @param ValueObject|Uuid $object
+     */
+    public function equals(ValueObject $object)
+    {
+        if ($object instanceof Uuid === false)
+        {
+            return false;
+        }
+
+        if ($object->getUuid() === $this->getUuid())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->value;
+    }
+}

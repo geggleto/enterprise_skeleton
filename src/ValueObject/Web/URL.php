@@ -24,7 +24,6 @@ class URL implements ValueObject, \JsonSerializable
      * URL constructor.
      *
      * @param string $url
-     * @throws InvalidURL
      */
     public function __construct($url)
     {

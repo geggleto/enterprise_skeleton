@@ -10,12 +10,8 @@ namespace Infrastructure\ValueObject\Web;
 use Infrastructure\ValueObject\Exception\InvalidArgumentException;
 use Infrastructure\ValueObject\ValueObject;
 
-/**
- * Class EmailAddress
- *
- * @package Mobials\Model\ValueObject\Web
- */
-final class EmailAddress implements ValueObject, \JsonSerializable
+
+class EmailAddress implements ValueObject, \JsonSerializable
 {
     /**
      * @var string
@@ -29,7 +25,7 @@ final class EmailAddress implements ValueObject, \JsonSerializable
     {
         if ( filter_var($email, FILTER_VALIDATE_EMAIL) === false)
         {
-            throw new InvalidArgumentException('Email is invalid. ' . $email);
+            throw new \InvalidArgumentException('Email is invalid. ' . $email);
         }
 
         $this->email = $email;

@@ -3,10 +3,15 @@
 
 namespace Infrastructure;
 
-
 use DI\Bridge\Slim\App;
 use DI\ContainerBuilder;
 
+/**
+ * Class EnterpriseApp
+ * @package Infrastructure
+ *
+ *
+ */
 class EnterpriseApp extends App
 {
     protected $pathToDIConfig;

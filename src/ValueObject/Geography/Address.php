@@ -30,10 +30,10 @@ class Address implements ValueObject, \JsonSerializable
      * @param string $addressLine2
      * @param string $city
      * @param string $postalCode
-     * @param Country $country
-     * @param ProvinceCode $province
+     * @param string $country
+     * @param string $province
      */
-    public function __construct($addressLine1, $addressLine2, $city, $postalCode, Country $country, ProvinceCode $province)
+    public function __construct($addressLine1, $addressLine2, $city, $postalCode, $province, $country)
     {
         $this->addressLine1 = $addressLine1;
         $this->addressLine2 = $addressLine2;
@@ -76,7 +76,7 @@ class Address implements ValueObject, \JsonSerializable
     }
 
     /**
-     * @return Country
+     * @return string
      */
     public function getCountry()
     {
@@ -84,7 +84,7 @@ class Address implements ValueObject, \JsonSerializable
     }
 
     /**
-     * @return ProvinceCode
+     * @return string
      */
     public function getProvince()
     {
@@ -108,8 +108,8 @@ class Address implements ValueObject, \JsonSerializable
             && $object->getAddressLine2() === $this->getAddressLine2()
             && $object->getCity() === $this->getCity()
             && $object->getPostalCode() === $this->getPostalCode()
-            && $object->getProvince()->equals($this->getProvince())
-            && $object->getCountry()->equals($this->getCountry())
+            && $object->getProvince() == $this->getProvince()
+            && $object->getCountry() == $this->getCountry()
         )
         {
             return true;
@@ -145,8 +145,8 @@ ADDR;
             'address_line_2' => $this->getAddressLine2(),
             'city' => $this->getCity(),
             'postal_code' => $this->getPostalCode(),
-            'province_id' => $this->getProvince()->getProvinceCode(),
-            'country_code' => $this->getCountry()->getCountryCode()
+            'province_id' => $this->getProvince(),
+            'country_code' => $this->getCountry()
         ];
     }
 
@@ -159,10 +159,8 @@ ADDR;
             $data['address_line_2'],
             $data['city'],
             $data['postal_code'],
-            new Country($data['country_code']),
-            ProvinceCode::fromCountryAndProvinceCode(
-                CountryCode::get($data['country_code'])
-                , $data['province_id'])
+            $data['province_id'],
+            $data['country_code']
         );
     }
 }

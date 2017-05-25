@@ -1,16 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bradleyhanebury
- * Date: 15-09-29
- * Time: 9:31 AM
- */
-
 namespace Infrastructure\ValueObject\Web;
 
-
 use Infrastructure\ValueObject\ValueObject;
-use Infrastructure\ValueObject\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 
 
 class Attachment implements ValueObject

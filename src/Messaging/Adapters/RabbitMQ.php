@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Infrastructure\Messaging\Adapters;
 
 
@@ -72,9 +70,19 @@ class RabbitMQ implements MessageDispatcher
     }
 
     /**
+     * @return AMQPStreamConnection
+     */
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+
+
+    /**
      * @inheritDoc
      */
-    public function publish($body, array $headers = [], $exchange, $routingKey)
+    public function publish($body, array $headers = [], $exchange = '*', $routingKey = '*')
     {
         $this->connect();
 

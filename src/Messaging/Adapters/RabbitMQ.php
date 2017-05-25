@@ -50,23 +50,16 @@ class RabbitMQ implements MessageDispatcher
         $this->userName = $userName;
         $this->password = $password;
         $this->port = $port;
-    }
 
-    /**
-     * connects to RabbitMQ
-     */
-    private function connect()
-    {
-        if (!$this->connection || !$this->connection->isConnected()) {
-            $this->connection = new AMQPStreamConnection(
-                $this->host,
-                $this->port,
-                $this->userName,
-                $this->password,
-                $this->vhost
-            );
-            $this->channel = $this->connection->channel();
-        }
+        $this->connection = new AMQPStreamConnection(
+            $this->host,
+            $this->port,
+            $this->userName,
+            $this->password,
+            $this->vhost
+        );
+
+        $this->channel = $this->connection->channel();
     }
 
     /**
@@ -77,15 +70,19 @@ class RabbitMQ implements MessageDispatcher
         return $this->connection;
     }
 
-
+    /**
+     * @return AMQPChannel
+     */
+    public function getChannel()
+    {
+        return $this->channel;
+    }
 
     /**
      * @inheritDoc
      */
     public function publish($body, array $headers = [], $exchange = '*', $routingKey = '*')
     {
-        $this->connect();
-
         $message = new AMQPMessage($body, $headers);
 
         try {
@@ -98,6 +95,9 @@ class RabbitMQ implements MessageDispatcher
             return true;
         }
         catch (\Exception $e) {
+            //TODO I can't find a way to actually throw an exception from rabbit
+            //Unfortunately if something bad happens here it bubbles as a fatal error
+            //The rabbit package does not robust exception support.
             return false;
         }
     }

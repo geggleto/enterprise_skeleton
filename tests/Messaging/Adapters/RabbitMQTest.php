@@ -5,6 +5,8 @@ namespace Tests\Infrastructure\Messaging\Adapters;
 
 
 use Infrastructure\Messaging\Adapters\RabbitMQ;
+use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Tests\Infrastructure\Base;
 
 class RabbitMQTest extends Base
@@ -23,5 +25,14 @@ class RabbitMQTest extends Base
     public function testPublish() {
         $value = bin2hex(random_bytes(16));
         $this->assertTrue($this->rabbit->publish(json_encode(['test' => $value])));
+    }
+
+    public function testGetConnection() {
+        $conn = $this->rabbit->getConnection();
+        $this->assertInstanceOf(AMQPStreamConnection::class, $conn);
+    }
+
+    public function testGetChannel() {
+        $this->assertInstanceOf(AMQPChannel::class, $this->rabbit->getChannel());
     }
 }

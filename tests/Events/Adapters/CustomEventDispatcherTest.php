@@ -76,7 +76,12 @@ class CustomEventDispatcherTest extends Base
     }
 
 
-    public function removeListener() {
+    public function testRemoveListener() {
+        $this->dispatcher = new CustomEventDispatcher(new Container());
+
+        $this->dispatcher->addListener($this->eventName, ['testReceive', 'handle']);
+        $this->dispatcher->addMiddleware(['testMiddleware', 'handle']);
+
         $this->dispatcher->removeListeners($this->eventName);
 
         $this->assertEmpty($this->dispatcher->getListeners($this->eventName));

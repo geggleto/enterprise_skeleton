@@ -29,7 +29,7 @@ abstract class AbstractRepository
      *
      * @return bool
      */
-    protected function persist(AbstractEntity $abstractEntity) {
+    public function store(AbstractEntity $abstractEntity) {
         try {
             $this->entityManager->persist($abstractEntity);
             $this->entityManager->flush();

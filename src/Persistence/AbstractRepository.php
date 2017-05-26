@@ -1,16 +1,12 @@
 <?php
-
-
 namespace Infrastructure\Persistence;
 
-
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Infrastructure\Events\EventDispatcher;
 
 abstract class AbstractRepository
 {
-    /** @var EntityManager */
+    /** @var EntityManagerInterface */
     protected $entityManager;
 
     /** @var  EventDispatcher */
@@ -19,10 +15,10 @@ abstract class AbstractRepository
     /**
      * AbstractRepository constructor.
      *
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      * @param EventDispatcher $dispatcher
      */
-    public function __construct(EntityManager $entityManager, EventDispatcher $dispatcher)
+    public function __construct(EntityManagerInterface $entityManager, EventDispatcher $dispatcher)
     {
         $this->entityManager = $entityManager;
         $this->dispatcher = $dispatcher;

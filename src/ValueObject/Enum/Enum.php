@@ -13,7 +13,7 @@ use Infrastructure\ValueObject\Util\Util;
 use Infrastructure\ValueObject\ValueObject;
 
 
-class Enum extends BaseEnum implements ValueObject
+abstract class Enum extends BaseEnum implements ValueObject
 {
 
     /**
@@ -25,7 +25,7 @@ class Enum extends BaseEnum implements ValueObject
      */
     public function equals(ValueObject $enum)
     {
-        if (false === Util::classEquals($this, $enum)) {
+        if (!Util::classEquals($this, $enum)) {
             return false;
         }
 

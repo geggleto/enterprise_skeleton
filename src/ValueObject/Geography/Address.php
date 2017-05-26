@@ -132,7 +132,7 @@ class Address implements ValueObject, \JsonSerializable
 %s
 ADDR;
 
-        $addressString = \sprintf($format, $this->getAddressLine1(), $this->getAddressLine2(), $this->getCity(), $this->getProvince(), $this->getPostalCode(), $this->getCountry()->getCountryCode());
+        $addressString = \sprintf($format, $this->getAddressLine1(), $this->getAddressLine2(), $this->getCity(), $this->getProvince(), $this->getPostalCode(), $this->getCountry());
         return $addressString;
     }
 

@@ -27,4 +27,23 @@ class LockingMiddlewareTest extends Base
 
         $this->assertTrue($executed);
     }
+
+    public function testExceptionExecute() {
+        $middleware = new LockingMiddleware();
+
+        $command = new BaseCommand(bin2hex(random_bytes(8)));
+
+        $executed = false;
+        try {
+        $middleware->execute($command, function ($thing) use ($command) {
+            throw new \Exception($command->getCommandName());
+        });
+        } catch (\Exception $exception) {
+            if ($exception->getMessage() === $command->getCommandName()) {
+                $executed = true;
+            }
+        }
+
+        $this->assertTrue($executed);
+    }
 }

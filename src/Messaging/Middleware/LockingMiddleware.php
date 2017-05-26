@@ -36,10 +36,13 @@ class LockingMiddleware implements Middleware
             return $next($command);
         };
 
-        if ($this->isExecuting) {
-            return false;
-        }
-        $this->isExecuting = true;
+        //I am 100% sure that this is not possible since php is synchronous
+        //Even if we send commands over Rabbit, this wouldn't track state
+        //over multiple servers ;)
+//        if ($this->isExecuting) {
+//            return false;
+//        }
+//        $this->isExecuting = true;
 
         try {
             $returnValue = $this->executeQueuedJobs();
@@ -58,7 +61,7 @@ class LockingMiddleware implements Middleware
      * Process any pending commands in the queue. If multiple, jobs are in the
      * queue, only the first return value is given back.
      *
-     * @return array
+     * @return bool
      */
     protected function executeQueuedJobs()
     {

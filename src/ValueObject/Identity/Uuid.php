@@ -9,12 +9,10 @@
 namespace Infrastructure\ValueObject\Identity;
 use Infrastructure\ValueObject\ValueObject;
 use Ramsey\Uuid\Uuid as BaseUuid;
-use Infrastructure\ValueObject\Exception\InvalidArgumentException;
 
 /**
  * Class Uuid
  *
- * @package Mobials\Model\ValueObject\Identity
  */
 class Uuid implements ValueObject
 {
@@ -26,6 +24,7 @@ class Uuid implements ValueObject
 
     /**
      * @param null|string $value
+     * @throws \InvalidArgumentException
      */
     public function __construct($value = null)
     {
@@ -35,7 +34,7 @@ class Uuid implements ValueObject
 
             if (! \preg_match($pattern, $value))
             {
-                throw new InvalidArgumentException("{$value} is not a valid UUID");
+                throw new \InvalidArgumentException("{$value} is not a valid UUID");
             }
 
             $uuid_str = $value;

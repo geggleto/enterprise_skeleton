@@ -24,7 +24,17 @@ class LanguageCode extends Enum
     /**
      * @return LanguageCode
      */
-    public function FR() {
+    public static function FR() {
         return LanguageCode::byName('FR_CA');
+    }
+
+    /**
+     * @return LanguageCode[]
+     */
+    public static function getAllLanguageCodes() {
+        return [
+            self::EN(),
+            self::FR()
+        ];
     }
 }

@@ -13,10 +13,8 @@ use Infrastructure\ValueObject\Web\Exception\InvalidURL;
 
 /**
  * Class URL
- *
- * @package Mobials\Model\ValueObject\Web
  */
-class URL implements ValueObject, \JsonSerializable
+class Url implements ValueObject, \JsonSerializable
 {
     private $url;
 
@@ -87,12 +85,12 @@ class URL implements ValueObject, \JsonSerializable
     }
 
     /**
-     * @param ValueObject|URL $object
+     * @param ValueObject|Url $object
      * @inheritdoc
      */
     public function equals(ValueObject $object)
     {
-        if ($object instanceof URL && $object->url === $object->getURL()) {
+        if ($object instanceof Url && $this->url === $object->getURL()) {
             return true;
         } else {
             return false;
@@ -113,7 +111,7 @@ class URL implements ValueObject, \JsonSerializable
     }
 
     public static function deserialize(array $data) {
-        return new URL($data['url']);
+        return new Url($data['url']);
     }
 
 

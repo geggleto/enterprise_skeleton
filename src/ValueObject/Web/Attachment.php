@@ -29,20 +29,26 @@ class Attachment implements ValueObject
      */
     public function __construct($name, $content, $mimeType)
     {
-        if (\is_string($name) === false)
-        {
-            throw new InvalidArgumentException('Attachment name must be a string');
+        if (empty($name) || empty($mimeType)) {
+            throw new \InvalidArgumentException("All fields required");
         }
 
-        if (base64_decode($content, true) === false)
-        {
-             throw new InvalidArgumentException('Content must be base64 encoded');
-        }
+        //why the hell would we ever
+        //decode the entire body ???!
+//        if (\is_string($name) === false)
+//        {
+//            throw new InvalidArgumentException('Attachment name must be a string');
+//        }
 
-        if (\is_string($mimeType) === false)
-        {
-            throw new InvalidArgumentException('Mime type must be a string');
-        }
+//        if (base64_decode($content, true) === false)
+//        {
+//             throw new InvalidArgumentException('Content must be base64 encoded');
+//        }
+
+//        if (\is_string($mimeType) === false)
+//        {
+//            throw new InvalidArgumentException('Mime type must be a string');
+//        }
 
         $this->name = $name;
         $this->content = $content;

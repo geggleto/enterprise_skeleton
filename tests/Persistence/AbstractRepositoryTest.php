@@ -2,9 +2,9 @@
 namespace Tests\Infrastructure\Persistence;
 
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Infrastructure\Events\Adapters\CustomEventDispatcher;
-use Infrastructure\Persistence\EntityManagerInterface;
 use Mockery;
 use Slim\Container;
 use Tests\Infrastructure\Base;
@@ -20,6 +20,7 @@ class AbstractRepositoryTest extends Base
     }
 
     public function testRepo() {
+        /** @var $entityManager EntityManagerInterface */
         $entityManager = Mockery::mock(EntityManagerInterface::class);
 
         $entityManager->shouldReceive('persist')
@@ -52,6 +53,7 @@ class AbstractRepositoryTest extends Base
      * @depends testRepo
      */
     public function testRepoException() {
+        /** @var $entityManager EntityManagerInterface */
         $entityManager = Mockery::mock(EntityManagerInterface::class);
 
         $entityManager->shouldReceive('persist')

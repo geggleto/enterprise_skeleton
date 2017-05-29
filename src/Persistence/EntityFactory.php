@@ -4,18 +4,22 @@ namespace Infrastructure\Persistence;
 class EntityFactory
 {
     /**
-     * @param $entity
-     * @param $data
+     * @param Entity $entity
+     * @param array $data
      *
      * @return AbstractEntity
      */
     public static function make($entity, array $data)
     {
-        $blueprint = $entity::blueprint;
+
+        $blueprint = $entity::getBlueprint();
+
         $args = [];
+
         foreach ($blueprint as $key => $pos) {
             $args[0] = $data[$key];
         }
+
         $entity = new $entity(...$args);
 
         return $entity;

@@ -8,10 +8,6 @@ use Tests\Infrastructure\BaseEvent;
 
 class UserEntity extends AbstractEntity
 {
-    const blueprint = [
-        'string' => 0
-    ];
-
     protected $string;
 
     public function __construct($string = '')
@@ -49,5 +45,25 @@ class UserEntity extends AbstractEntity
     public function update(array $data)
     {
         $this->string = $data['string'];
+    }
+
+    /**
+     * @return array
+     */
+    static function getBlueprint()
+    {
+        return [
+            'string' => 0
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    static function getRequiredFields()
+    {
+        return [
+            'string'
+        ];
     }
 }

@@ -18,3 +18,8 @@ The unit tests require:
     - RabbitMQ
     - Command Bus
 - Value Objects
+
+
+## Problems
+
+- Hydration of HTTP Body to Entities

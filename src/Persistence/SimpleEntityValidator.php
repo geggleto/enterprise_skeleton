@@ -19,10 +19,11 @@ class SimpleEntityValidator
 
     public function __invoke(Request $request, Response $response, $next)
     {
+        /** @var $entity Entity */
         $entity = $this->entityClass;
 
         $valitron = new Validator($request->getParsedBody());
-        $valitron->rule('required', array_keys($entity::bootstrap));
+        $valitron->rule('required', $entity::getRequiredFields());
 
         if ($valitron->validate()) {
             return $next($request, $response);

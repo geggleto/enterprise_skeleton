@@ -66,6 +66,8 @@ class RestController
      */
     public function createObject(Request $request, Response $response)
     {
+        $args = $request->getParsedBody();
+        $args['uuid'] = new Uuid();
         /** @var $entity AbstractEntity */
         $entity = EntityFactory::make($this->entityName, $request->getParsedBody());
 

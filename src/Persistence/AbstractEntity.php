@@ -5,6 +5,7 @@ namespace Infrastructure\Persistence;
 
 use Infrastructure\Events\DomainEvent;
 use Infrastructure\ValueObject\Identity\Uuid;
+use Infrastructure\Persistence\Entity as InfrastructureEntity;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
@@ -14,7 +15,7 @@ use Doctrine\ORM\Mapping\Column;
  * @package Infrastructure\Persistence
  * @Entity
  */
-abstract class AbstractEntity
+abstract class AbstractEntity implements InfrastructureEntity
 {
     /**
      * @var Uuid

@@ -37,24 +37,13 @@ class RestControllerTest extends Base
             ->andThrow(ORMException::class, 'Error')
             ->mock();
 
-
         $container = new Container();
 
         $dispatcher = new CustomEventDispatcher($container);
 
-        $container[UserRepository::class] = function (ContainerInterface $container) use($entityManager, $dispatcher)
-        {
-            return new UserRepository($entityManager, $dispatcher);
-        };
-
         $controller = new RestController(
             UserEntity::class,
-            new RepositoryFactory(
-                $container,
-                [
-                    UserEntity::class => UserRepository::class
-                ]
-            )
+            new UserRepository($entityManager, $dispatcher)
         );
 
         $value = bin2hex(random_bytes(8));

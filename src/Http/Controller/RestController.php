@@ -20,13 +20,13 @@ class RestController
 
     /**
      * RestController constructor.
-     * @param RepositoryFactory $factory
      * @param string $entityName
+     * @param AbstractRepository $repository
      */
-    public function __construct($entityName = '', RepositoryFactory $factory)
+    public function __construct($entityName = '', AbstractRepository $repository)
     {
         $this->entityName = $entityName;
-        $this->repository = $factory->fetch($entityName);
+        $this->repository = $repository;
     }
 
     /**

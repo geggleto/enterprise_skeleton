@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Infrastructure\Persistence;
 
 use Infrastructure\Events\DomainEvent;

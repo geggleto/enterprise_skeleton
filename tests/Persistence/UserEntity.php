@@ -8,6 +8,10 @@ use Tests\Infrastructure\BaseEvent;
 
 class UserEntity extends AbstractEntity
 {
+    const blueprint = [
+        'string' => 0
+    ];
+
     protected $string;
 
     public function __construct($string = '')

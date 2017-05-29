@@ -11,9 +11,10 @@ class EntityFactory
      */
     public static function make($entity, array $data)
     {
+        $blueprint = $entity::blueprint;
         $args = [];
-        foreach ($data as $value) {
-            $args[] = $value;
+        foreach ($blueprint as $key => $pos) {
+            $args[0] = $data[$key];
         }
         $entity = new $entity(...$args);
 

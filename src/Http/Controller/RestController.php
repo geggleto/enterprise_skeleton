@@ -5,7 +5,6 @@ namespace Infrastructure\Http\Controller;
 use Infrastructure\Persistence\AbstractEntity;
 use Infrastructure\Persistence\AbstractRepository;
 use Infrastructure\Persistence\EntityFactory;
-use Infrastructure\Persistence\RepositoryFactory;
 use Infrastructure\ValueObject\Identity\Uuid;
 use Slim\Http\Request;
 use Slim\Http\Response;

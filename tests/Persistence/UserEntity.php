@@ -14,4 +14,21 @@ class UserEntity extends AbstractEntity
 
         $this->raise(new BaseEvent($string));
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [];
+    }
+
+    /**
+     * @param bool $deleted
+     * @return void
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
 }

@@ -4,9 +4,36 @@
 namespace Infrastructure\Persistence;
 
 use Infrastructure\Events\DomainEvent;
+use Infrastructure\ValueObject\Identity\Uuid;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Column;
 
+/**
+ * Class AbstractEntity
+ * @package Infrastructure\Persistence
+ * @Entity
+ */
 abstract class AbstractEntity
 {
+    /**
+     * @var Uuid
+     * @Id()
+     * @Column(type="guid")
+     */
+    protected $uuid;
+
+    /**
+     * @var bool
+     * @Column(type="boolean")
+     */
+    protected $deleted;
+
+    /**
+     * @return array
+     */
+    abstract public function toArray();
+
     /** @var DomainEvent[] */
     protected $events;
 
@@ -16,6 +43,7 @@ abstract class AbstractEntity
     public function __construct()
     {
         $this->events = [];
+        $this->deleted = false;
     }
 
     /**
@@ -34,4 +62,34 @@ abstract class AbstractEntity
 
         return $events;
     }
+
+    /**
+     * @return Uuid
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @param Uuid $uuid
+     */
+    public function setUuid($uuid)
+    {
+        $this->uuid = $uuid;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param $deleted
+     * @return void
+     */
+    abstract public function setDeleted($deleted);
 }

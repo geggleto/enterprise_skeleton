@@ -92,4 +92,10 @@ abstract class AbstractEntity
      * @return void
      */
     abstract public function setDeleted($deleted);
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    abstract public function update(array $data);
 }

@@ -8,9 +8,13 @@ use Tests\Infrastructure\BaseEvent;
 
 class UserEntity extends AbstractEntity
 {
+    protected $string;
+
     public function __construct($string = '')
     {
         parent::__construct();
+
+        $this->string = $string;
 
         $this->raise(new BaseEvent($string));
     }
@@ -20,7 +24,9 @@ class UserEntity extends AbstractEntity
      */
     public function toArray()
     {
-        return [];
+        return [
+            'string' => $this->string
+        ];
     }
 
     /**
@@ -30,5 +36,14 @@ class UserEntity extends AbstractEntity
     public function setDeleted($deleted)
     {
         $this->deleted = $deleted;
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function update(array $data)
+    {
+        $this->string = $data['string'];
     }
 }

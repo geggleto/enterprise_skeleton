@@ -12,7 +12,7 @@ class EntityFactoryTest extends Base
     public function testMakeEntity()
     {
         $args = [
-            bin2hex(random_bytes(8))
+            'string' => bin2hex(random_bytes(8))
         ];
 
         $user = EntityFactory::make(UserEntity::class, $args);

@@ -70,7 +70,7 @@ class RestController
         $args['uuid'] = new Uuid();
 
         /** @var $entity AbstractEntity */
-        $entity = EntityFactory::make($this->entityName, $request->getParsedBody());
+        $entity = EntityFactory::make($this->entityName, $args);
 
         $this->repository->store($entity);
 

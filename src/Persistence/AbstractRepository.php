@@ -1,6 +1,7 @@
 <?php
 namespace Infrastructure\Persistence;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Infrastructure\Events\EventDispatcher;
 

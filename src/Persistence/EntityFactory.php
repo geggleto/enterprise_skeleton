@@ -17,7 +17,7 @@ class EntityFactory
         $args = [];
 
         foreach ($blueprint as $key => $pos) {
-            $args[0] = $data[$key];
+            $args[$pos] = $data[$key];
         }
 
         $instance = new $entity(...$args);

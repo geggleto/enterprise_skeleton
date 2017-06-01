@@ -3,6 +3,7 @@
 
 namespace Tests\Infrastructure\Persistence;
 
+use Infrastructure\Exceptions\InvalidEntityException;
 use Infrastructure\Persistence\AbstractEntity;
 use Tests\Infrastructure\BaseEvent;
 
@@ -40,7 +41,6 @@ class UserEntity extends AbstractEntity
 
     /**
      * @param array $data
-     * @return mixed
      */
     public function update(array $data)
     {
@@ -48,22 +48,14 @@ class UserEntity extends AbstractEntity
     }
 
     /**
-     * @return array
+     * @param array $data
+     * @throws InvalidEntityException
+     * @return static
      */
-    static function getBlueprint()
+    static function fromArray(array $data)
     {
-        return [
-            'string' => 0
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    static function getRequiredFields()
-    {
-        return [
-            'string'
-        ];
+        return new UserEntity(
+            $data['string']
+        );
     }
 }

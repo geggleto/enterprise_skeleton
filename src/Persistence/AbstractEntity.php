@@ -94,7 +94,6 @@ abstract class AbstractEntity implements InfrastructureEntity
 
     /**
      * @param array $data
-     * @return mixed
      */
     abstract public function update(array $data);
 }

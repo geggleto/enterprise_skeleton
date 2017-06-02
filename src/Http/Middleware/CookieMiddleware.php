@@ -39,7 +39,10 @@ class CookieMiddleware implements MiddlewareInterface
             ->withHttpOnly(true)
             ->rememberForever();
 
+        /** @var $response ResponseInterface */
         $response = FigResponseCookies::set($response, $responseCookie);
+
+        /** @var $request ServerRequestInterface */
         $request = FigRequestCookies::set($serverRequest, $requestCookie);
 
         $languageRequestCookie = FigRequestCookies::get($request, 'language', 'en_CA');

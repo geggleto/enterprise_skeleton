@@ -108,8 +108,8 @@ class Address implements ValueObject, \JsonSerializable
             && $object->getAddressLine2() === $this->getAddressLine2()
             && $object->getCity() === $this->getCity()
             && $object->getPostalCode() === $this->getPostalCode()
-            && $object->getProvince() == $this->getProvince()
-            && $object->getCountry() == $this->getCountry()
+            && $object->getProvince() === $this->getProvince()
+            && $object->getCountry() === $this->getCountry()
         )
         {
             return true;

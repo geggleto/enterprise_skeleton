@@ -3,8 +3,6 @@ namespace Infrastructure\Http\Middleware;
 
 use Aura\Intl\TranslatorLocator;
 use Dflydev\FigCookies\FigRequestCookies;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -40,7 +38,7 @@ class LocalizationMiddleware implements MiddlewareInterface
     {
         $locale = FigRequestCookies::get($serverRequest, 'language', 'en_CA')->getValue();
 
-        if (!in_array($locale, $this->langs)) {
+        if (!in_array($locale, $this->langs, true)) {
             $locale = 'en_CA';
         }
 

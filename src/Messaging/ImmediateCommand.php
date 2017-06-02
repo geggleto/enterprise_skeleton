@@ -48,7 +48,7 @@ class ImmediateCommand implements Command
     /**
      * @inheritDoc
      */
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return [
             'command' => $this->getCommand()->jsonSerialize()
@@ -57,6 +57,7 @@ class ImmediateCommand implements Command
 
     /**
      * @inheritDoc
+     * @throws \RuntimeException
      */
     public static function deserialize(array $data)
     {

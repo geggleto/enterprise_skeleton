@@ -16,6 +16,7 @@ class LanguageCode extends Enum
 
     /**
      * @return LanguageCode
+     * @throws \InvalidArgumentException
      */
     public static function EN() {
         return LanguageCode::byName('EN');
@@ -23,6 +24,8 @@ class LanguageCode extends Enum
 
     /**
      * @return LanguageCode
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      */
     public static function FR() {
         return LanguageCode::byName('FR_CA');
@@ -30,6 +33,8 @@ class LanguageCode extends Enum
 
     /**
      * @return LanguageCode[]
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      */
     public static function getAllLanguageCodes() {
         return [

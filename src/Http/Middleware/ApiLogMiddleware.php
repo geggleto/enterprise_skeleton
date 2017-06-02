@@ -1,14 +1,9 @@
 <?php
 namespace Infrastructure\Http\Middleware;
 
-
-use Infrastructure\Events\EventDispatcher;
 use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
-
-
-use Monolog\Logger;
 
 class ApiLogMiddleware
 {

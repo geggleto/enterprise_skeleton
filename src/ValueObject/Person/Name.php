@@ -80,7 +80,7 @@ class Name implements ValueObject, \JsonSerializable
      */
     public function __toString()
     {
-        return \strval($this->getFullName());
+        return $this->getFullName();
     }
 
     /**

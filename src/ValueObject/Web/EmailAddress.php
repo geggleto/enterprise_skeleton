@@ -7,7 +7,6 @@
  */
 
 namespace Infrastructure\ValueObject\Web;
-use Infrastructure\ValueObject\Exception\InvalidArgumentException;
 use Infrastructure\ValueObject\ValueObject;
 
 
@@ -20,6 +19,7 @@ class EmailAddress implements ValueObject, \JsonSerializable
 
     /**
      * @param $email
+     * @throws \InvalidArgumentException
      */
     public function __construct($email)
     {
@@ -52,18 +52,13 @@ class EmailAddress implements ValueObject, \JsonSerializable
      */
     public function equals(ValueObject $object)
     {
-        if ($object instanceof EmailAddress && $object->getEmail() == $this->getEmail())
-        {
-            return true;
-        }
-
-        return false;
+        return ($object instanceof EmailAddress && $object->getEmail() === $this->getEmail());
     }
 
     /**
      * @inheritDoc
      */
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return [
             'email' => $this->email

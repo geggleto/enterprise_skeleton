@@ -62,6 +62,18 @@ class RabbitMQ implements MessageDispatcher
         $this->channel = $this->connection->channel();
     }
 
+    public function reconnect() {
+        $this->connection = new AMQPStreamConnection(
+            $this->host,
+            $this->port,
+            $this->userName,
+            $this->password,
+            $this->vhost
+        );
+
+        $this->channel = $this->connection->channel();
+    }
+
     /**
      * @return AMQPStreamConnection
      */

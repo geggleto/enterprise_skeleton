@@ -26,11 +26,12 @@ class Attachment implements ValueObject
      * @param string $name
      * @param string $content base64 encoded content
      * @param string $mimeType the mimetype
+     * @throws \InvalidArgumentException
      */
     public function __construct($name, $content, $mimeType)
     {
         if (empty($name) || empty($mimeType)) {
-            throw new \InvalidArgumentException("All fields required");
+            throw new InvalidArgumentException('All fields required');
         }
 
         //why the hell would we ever

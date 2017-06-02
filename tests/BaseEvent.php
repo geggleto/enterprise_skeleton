@@ -25,7 +25,7 @@ class BaseEvent implements DomainEvent
         return $this->eventName;
     }
 
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return [
             'event_name' => $this->eventName

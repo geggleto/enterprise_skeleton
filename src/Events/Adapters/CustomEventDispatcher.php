@@ -38,13 +38,14 @@ class CustomEventDispatcher implements EventDispatcher
     }
 
 
-
     /**
      * @inheritDoc
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function dispatch(DomainEvent $event)
     {
-        if (isset($this->mapping[$event->getEventName()])) {
+        if (is_array($this->mapping[$event->getEventName()])) {
             foreach ($this->mapping[$event->getEventName()] as $subscriber) {
                 if (is_string($subscriber[0])) { //If we need to pull the object from the container
                     //call_user_func_array([$this->container->get($subscriber[0]), $subscriber[1]], [$event]);
@@ -53,7 +54,7 @@ class CustomEventDispatcher implements EventDispatcher
                     $sub->{$subscriber[1]}($event);
 
                 } else { // Else we assume it's already a callable
-                    call_user_func_array($subscriber, [$event]);
+                    $subscriber($event);
                 }
             }
         }
@@ -66,7 +67,7 @@ class CustomEventDispatcher implements EventDispatcher
                 $middleware->{$subscriber[1]}($event);
 
             } else { // Else we assume it's already a callable
-                call_user_func_array($subscriber, [$event]);
+                $subscriber($event);
             }
         }
     }
@@ -98,6 +99,6 @@ class CustomEventDispatcher implements EventDispatcher
      * @return array
      */
     public function getListeners($eventName) {
-        return (isset($this->mapping[$eventName]))? $this->mapping[$eventName] : [];
+        return isset($this->mapping[$eventName]) ? $this->mapping[$eventName] : [];
     }
 }

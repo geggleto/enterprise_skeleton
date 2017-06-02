@@ -44,7 +44,7 @@ class Uuid implements ValueObject
             $uuid_str = BaseUuid::uuid4();
         }
 
-        $this->value = \strval($uuid_str);
+        $this->value = (string)$uuid_str;
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace Infrastructure\Messaging\Middleware;
 
 
+use Infrastructure\Messaging\Command;
 use League\Tactician\Middleware;
 
 /**
@@ -23,7 +24,7 @@ class LockingMiddleware implements Middleware
     /**
      * Execute the given command... after other running commands are complete.
      *
-     * @param object   $command
+     * @param Command   $command
      * @param callable $next
      *
      * @throws \Exception

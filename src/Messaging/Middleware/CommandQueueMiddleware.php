@@ -40,15 +40,15 @@ class CommandQueueMiddleware implements Middleware
     {
         if ($command instanceof ImmediateCommand) {
             return $next($command->getCommand());
-        } else {
-            $this->adapter->publish(
-                json_encode($command->jsonSerialize()),
-                [],
-                $this->exchange,
-                $command->getCommandName()
-            );
-
-            return true;
         }
+
+        $this->adapter->publish(
+            json_encode($command->jsonSerialize()),
+            [],
+            $this->exchange,
+            $command->getCommandName()
+        );
+
+        return true;
     }
 }

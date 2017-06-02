@@ -9,7 +9,6 @@
 namespace Infrastructure\ValueObject\Web;
 
 use Infrastructure\ValueObject\ValueObject;
-use Infrastructure\ValueObject\Web\Exception\InvalidURL;
 
 /**
  * Class URL
@@ -90,11 +89,7 @@ class Url implements ValueObject, \JsonSerializable
      */
     public function equals(ValueObject $object)
     {
-        if ($object instanceof Url && $this->url === $object->getURL()) {
-            return true;
-        } else {
-            return false;
-        }
+        return ($object instanceof Url && $this->url === $object->getURL());
     }
 
     /**
@@ -102,10 +97,10 @@ class Url implements ValueObject, \JsonSerializable
      */
     public function __toString()
     {
-        return "".$this->url;
+        return ''.$this->url;
     }
 
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return [ 'url' => $this->url ];
     }

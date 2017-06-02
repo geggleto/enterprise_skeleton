@@ -8,7 +8,8 @@ interface EntityValidator
 {
     /**
      * @param array $data
-     * @return array|bool
+     * @throws ValidationException
+     * @return bool
      */
     public function validate(array $data);
 }

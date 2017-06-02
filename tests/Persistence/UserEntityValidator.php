@@ -5,6 +5,7 @@ namespace Tests\Infrastructure\Persistence;
 
 
 use Infrastructure\Persistence\EntityValidator;
+use Infrastructure\Persistence\ValidationException;
 use Valitron\Validator;
 
 class UserEntityValidator implements EntityValidator
@@ -23,16 +24,18 @@ class UserEntityValidator implements EntityValidator
 
     /**
      * @param array $data
-     * @return array|bool
+     * @return bool
+     * @throws ValidationException
      */
     public function validate(array $data)
     {
         $this->valitron->withData($data);
 
-        if ($this->valitron->validate())
-            return true;
-        else
-            return $this->valitron->errors();
+        if (!$this->valitron->validate()) {
+            throw new ValidationException($this->valitron->errors());
+        }
+
+        return true;
     }
 
 }

@@ -23,3 +23,10 @@ The unit tests require:
 ## Problems
 
 - Hydration of HTTP Body to Entities
+
+
+## Entity Validation
+
+- define `isValid`
+- use `fromArray`
+- check to see if the result from FromArray is an array

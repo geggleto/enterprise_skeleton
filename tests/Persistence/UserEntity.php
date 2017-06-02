@@ -6,6 +6,7 @@ namespace Tests\Infrastructure\Persistence;
 use Infrastructure\Exceptions\InvalidEntityException;
 use Infrastructure\Persistence\AbstractEntity;
 use Tests\Infrastructure\BaseEvent;
+use Valitron\Validator;
 
 class UserEntity extends AbstractEntity
 {
@@ -45,17 +46,5 @@ class UserEntity extends AbstractEntity
     public function update(array $data)
     {
         $this->string = $data['string'];
-    }
-
-    /**
-     * @param array $data
-     * @throws InvalidEntityException
-     * @return static
-     */
-    static function fromArray(array $data)
-    {
-        return new UserEntity(
-            $data['string']
-        );
     }
 }

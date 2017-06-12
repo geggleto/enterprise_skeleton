@@ -45,7 +45,7 @@ class CustomEventDispatcher implements EventDispatcher
      */
     public function dispatch(DomainEvent $event)
     {
-        if (is_array($this->mapping[$event->getEventName()])) {
+        if (isset($this->mapping[$event->getEventName()]) && is_array($this->mapping[$event->getEventName()])) {
             foreach ($this->mapping[$event->getEventName()] as $subscriber) {
                 if (is_string($subscriber[0])) { //If we need to pull the object from the container
                     //call_user_func_array([$this->container->get($subscriber[0]), $subscriber[1]], [$event]);

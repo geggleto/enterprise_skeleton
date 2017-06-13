@@ -34,7 +34,7 @@ abstract class AbstractEntity implements InfrastructureEntity
     abstract public function toArray();
 
     /** @var DomainEvent[] */
-    protected $events;
+    private $events;
 
     /**
      * AbstractEntity constructor.

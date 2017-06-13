@@ -28,10 +28,6 @@ abstract class AbstractEntity implements InfrastructureEntity
      */
     protected $deleted;
 
-    /**
-     * @return array
-     */
-    abstract public function toArray();
 
     /** @var DomainEvent[] */
     private $events;
@@ -86,14 +82,4 @@ abstract class AbstractEntity implements InfrastructureEntity
         return $this->deleted;
     }
 
-    /**
-     * @param $deleted
-     * @return void
-     */
-    abstract public function setDeleted($deleted);
-
-    /**
-     * @param array $data
-     */
-    abstract public function update(array $data);
 }

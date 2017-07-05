@@ -30,7 +30,7 @@ abstract class AbstractEntity implements InfrastructureEntity
 
 
     /** @var DomainEvent[] */
-    private $events;
+    private $events = []; //need to set this here b/c doctrine :D
 
     /**
      * AbstractEntity constructor.

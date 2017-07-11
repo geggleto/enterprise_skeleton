@@ -38,37 +38,16 @@ abstract class AbstractRepository
             $this->entityManager->flush();
 
             $events = $abstractEntity->getEvents();
+
             foreach ($events as $event) {
                 $this->dispatcher->dispatch($event);
             }
 
             return true;
+
         } catch (ORMException $exception) {
             return false;
         }
-    }
-
-    /**
-     * @param AbstractEntity $entity
-     */
-    public function remove(AbstractEntity $entity)
-    {
-        $entity->setDeleted(true);
-
-        $this->store($entity);
-    }
-
-    /**
-     * @param Uuid $uuid
-     * @return AbstractEntity
-     */
-    public function Unremove(Uuid $uuid)
-    {
-        $entity = $this->find($uuid);
-        $entity->setDeleted(false);
-        $this->store($entity);
-
-        return $entity;
     }
 
     /**

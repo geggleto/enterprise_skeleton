@@ -38,7 +38,6 @@ abstract class AbstractEntity implements InfrastructureEntity
     public function __construct()
     {
         $this->events = [];
-        $this->deleted = false;
     }
 
     /**
@@ -73,13 +72,4 @@ abstract class AbstractEntity implements InfrastructureEntity
     {
         $this->uuid = $uuid;
     }
-
-    /**
-     * @return bool
-     */
-    public function isDeleted()
-    {
-        return $this->deleted;
-    }
-
 }

@@ -68,22 +68,22 @@ class CommandQueueConsumer
     }
 
     public function run(
-        $routingKey
+        $routingKey, $queueName, $queueDlx
     ) {
 
         $this->channel->exchangeDeclare($this->exchangeName, 'topic', false, true);
         $this->channel->exchangeDeclare($this->deadLetterExchangeName, 'topic', false, true);
 
         //define our DLX which is based off of the routing key name. This is for clarity.
-        $dlxQueueName = $routingKey . '_dlx';
+        $dlxQueueName = $queueDlx;
         $this->channel->queueDeclare($dlxQueueName);
         $this->channel->queueBind($dlxQueueName, $this->deadLetterExchangeName, $routingKey);
 
         //NOTE our Queue name will always be the same as the routing key. This is for clarity.
-        $this->channel->queueDeclare($routingKey, '', true, false, false, false, [
+        $this->channel->queueDeclare($queueName, '', true, false, false, false, [
             'x-dead-letter-exchange' => $this->deadLetterExchangeName
         ]);
-        $this->channel->queueBind($routingKey, $this->exchangeName, $routingKey);
+        $this->channel->queueBind($queueName, $this->exchangeName, $routingKey);
 
         $startTime = time();
 

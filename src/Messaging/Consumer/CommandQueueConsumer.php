@@ -124,7 +124,7 @@ class CommandQueueConsumer
                 $this->logger->error("{$pid} Message has been nacked");
                 die("Killing consumer as the handler threw an exception");
             },
-            $routingKey
+            $queueName
         );
     }
 

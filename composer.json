@@ -19,7 +19,9 @@
         "dflydev/fig-cookies": "^1.0",
         "marc-mabe/php-enum": "^2.3",
         "bunny/bunny": "^0.2.4",
-        "mandrill/mandrill": "^1.0"
+        "mandrill/mandrill": "^1.0",
+        "league/flysystem": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev" : {
         "phpunit/phpunit" : "^5.6",

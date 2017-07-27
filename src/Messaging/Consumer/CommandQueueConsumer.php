@@ -76,7 +76,7 @@ class CommandQueueConsumer
 
         //define our DLX which is based off of the routing key name. This is for clarity.
         $dlxQueueName = $queueDlx;
-        $this->channel->queueDeclare($dlxQueueName);
+        $this->channel->queueDeclare($dlxQueueName, '', true);
         $this->channel->queueBind($dlxQueueName, $this->deadLetterExchangeName, $routingKey);
 
         //NOTE our Queue name will always be the same as the routing key. This is for clarity.
